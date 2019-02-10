@@ -1,17 +1,14 @@
 const _ = require('lodash');
+var mongoose = require('mongoose');
 const Registartion = require('../../models/registration')
-const Login =require('../../models/login')
+var Login = mongoose.model('Login');
 
 
 const getLogin_MDB = user => {
-    console.log(user);
-    
-    return Login.find({ email: user.email }).then((res) => {
-        if (res.length > 0) {
-            return { name: res[0].name, email: res[0].email, message: "User not found, Please logout and login again." }
-        } else {
-            return { name: "", email: "", message: "User not found, Please logout and login again." };
-        }
-    });
+    console.log("user11", user);
+    return Login.findOne({ "email": user.email }).then((data) => {
+        console.log("data:", data);
+        return { email: data.email, firstname: data.firstname, lastname: data.lastname, password: data.password }
+    })
 };
 module.exports = { getLogin_MDB }

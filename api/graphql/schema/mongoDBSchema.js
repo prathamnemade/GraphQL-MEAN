@@ -8,8 +8,7 @@ type Login{
     email:String!
     firstname:String!
     lastname:String
-    hash:String!
-    salt:String!
+    password:String!
 }
 type Registration{
     login:Login!
@@ -20,7 +19,7 @@ type Registration{
     registrationID:String
 }
 type Query{
-    getLogin(email:String,firstname:String,lastname:String,hash:String,salt:String):Login
+    getLogin(email:String,firstname:String,lastname:String,password:String):Login
 }
 `
 const resolvers = {
